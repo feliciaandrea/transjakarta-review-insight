@@ -11,4 +11,3 @@ bertopic
 stanza
 openpyxl
 psutil
-os
