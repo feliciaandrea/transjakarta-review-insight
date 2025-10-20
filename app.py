@@ -259,6 +259,9 @@ with tab1:
 
             if st.session_state.sentiment_done:
                 st.success("✅ Sentiment prediction complete! Go to **Tab '📊 Sentiment Analysis'** to view results.")
+                import psutil, os
+                mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
+                st.write(f"Current memory usage: {mem:.2f} MB")
 
             # --- Tombol Topic ---
             if st.session_state.sentiment_done:
@@ -955,13 +958,10 @@ with tab3:
                         use_container_width=True
                     )
 
-                import psutil, os
-                mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
-                st.write(f"Current memory usage: {mem:.2f} MB")
-
     else:
 
         st.warning("⚠️ Please run the topic prediction first.")
+
 
 
 
