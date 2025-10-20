@@ -1,0 +1,12 @@
+streamlit>=1.34.0
+pandas
+matplotlib
+torch
+transformers
+emoji
+wordcloud
+altair
+Sastrawi
+bertopic
+stanza
+openpyxl
