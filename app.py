@@ -398,7 +398,6 @@ with tab2:
                 ax.axis("off")
 
         st.pyplot(fig)
-        plt.close(fig)
 
         # --- Dropdown untuk filter review berdasarkan sentiment ---
         st.markdown("### 🔍 Explore Reviews by Sentiment")
@@ -961,4 +960,5 @@ with tab3:
                     )
 
     else:
+
         st.warning("⚠️ Please run the topic prediction first.")
