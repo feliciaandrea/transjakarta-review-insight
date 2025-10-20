@@ -109,6 +109,10 @@ def remove_stopwords_topic(text):
                     if word not in stopwords_list and word not in additional_stopwords_topic]
     return " ".join(tokens_clean)
 
+import psutil, os
+mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
+st.write(f"Current memory usage: {mem:.2f} MB")
+
 # ==============================
 # Lemmatization
 # ==============================
@@ -125,6 +129,9 @@ def lemmatize_text(nlp, text):
         for word in sent.words:
             lemmas.append(word.lemma)
     return " ".join(lemmas)
+
+mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
+st.write(f"Current memory usage: {mem:.2f} MB")
 
 # ==============================
 # Prediction function - sentiment
@@ -227,9 +234,6 @@ tab1, tab2, tab3 = st.tabs([
 with tab1:
     st.subheader("📁 Upload Data")
     st.info("Upload a **.csv** file with **one text column** of user reviews")
-    import psutil, os
-    mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
-    st.write(f"Current memory usage: {mem:.2f} MB")
 
     uploaded_file = st.file_uploader("Drag and drop your CSV file here", type=["csv"], accept_multiple_files=False)
     
@@ -961,6 +965,7 @@ with tab3:
     else:
 
         st.warning("⚠️ Please run the topic prediction first.")
+
 
 
 
