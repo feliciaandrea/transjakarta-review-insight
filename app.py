@@ -221,7 +221,6 @@ tab1, tab2, tab3 = st.tabs([
     "💡 Topic Analysis"
 ])
 
-
 # ==============================
 # Tab 1 - Upload Data
 # ==============================
@@ -956,8 +955,13 @@ with tab3:
                         use_container_width=True
                     )
 
+                import psutil, os
+                mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
+                st.write(f"Current memory usage: {mem:.2f} MB")
+
     else:
 
         st.warning("⚠️ Please run the topic prediction first.")
+
 
 
