@@ -109,10 +109,6 @@ def remove_stopwords_topic(text):
                     if word not in stopwords_list and word not in additional_stopwords_topic]
     return " ".join(tokens_clean)
 
-import psutil, os
-mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
-st.write(f"Current memory usage: {mem:.2f} MB")
-
 # ==============================
 # Lemmatization
 # ==============================
@@ -129,9 +125,6 @@ def lemmatize_text(nlp, text):
         for word in sent.words:
             lemmas.append(word.lemma)
     return " ".join(lemmas)
-
-mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
-st.write(f"Current memory usage: {mem:.2f} MB")
 
 # ==============================
 # Prediction function - sentiment
@@ -304,6 +297,9 @@ with tab1:
 
             if st.session_state.topic_done:
                 st.success("✅ Topic prediction complete! Go to **Tab '💡 Topic Analysis'** to view results.")
+                import psutil, os
+                mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
+                st.write(f"Current memory usage: {mem:.2f} MB")
 
 # ==============================
 # Tab 2 - Sentiment Results
@@ -965,6 +961,7 @@ with tab3:
     else:
 
         st.warning("⚠️ Please run the topic prediction first.")
+
 
 
 
