@@ -227,6 +227,9 @@ tab1, tab2, tab3 = st.tabs([
 with tab1:
     st.subheader("📁 Upload Data")
     st.info("Upload a **.csv** file with **one text column** of user reviews")
+    import psutil, os
+    mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
+    st.write(f"Current memory usage: {mem:.2f} MB")
 
     uploaded_file = st.file_uploader("Drag and drop your CSV file here", type=["csv"], accept_multiple_files=False)
     
@@ -259,9 +262,6 @@ with tab1:
 
             if st.session_state.sentiment_done:
                 st.success("✅ Sentiment prediction complete! Go to **Tab '📊 Sentiment Analysis'** to view results.")
-                import psutil, os
-                mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
-                st.write(f"Current memory usage: {mem:.2f} MB")
 
             # --- Tombol Topic ---
             if st.session_state.sentiment_done:
@@ -961,6 +961,7 @@ with tab3:
     else:
 
         st.warning("⚠️ Please run the topic prediction first.")
+
 
 
 
