@@ -351,6 +351,7 @@ with tab2:
         st.altair_chart(chart)
 
         # Word Cloud
+        @st.cache_data(show_spinner=False)
         def generate_wordcloud(texts, colormap, max_words):
             text_combined = " ".join(texts)
             
@@ -962,3 +963,4 @@ with tab3:
     else:
 
         st.warning("⚠️ Please run the topic prediction first.")
+
