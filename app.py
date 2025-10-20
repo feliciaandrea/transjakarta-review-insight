@@ -232,10 +232,6 @@ with tab1:
     uploaded_file = st.file_uploader("Drag and drop your CSV file here", type=["csv"], accept_multiple_files=False)
     
     if uploaded_file is not None:
-        st.cache_data.clear()
-        if "uploaded_data" in st.session_state:
-            del st.session_state["uploaded_data"]
-
         df = pd.read_csv(uploaded_file)
 
         if df.shape[1] != 1:
@@ -963,4 +959,5 @@ with tab3:
     else:
 
         st.warning("⚠️ Please run the topic prediction first.")
+
 
