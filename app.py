@@ -25,6 +25,9 @@ st.set_page_config(
 st.markdown("# 🚍 Transjakarta Review Insight")
 st.markdown("Analyze user reviews to uncover sentiment trends and popular discussion topics about Transjakarta")
 st.caption("Upload Data -> Analyze Sentiment -> Analyze Topic")
+import psutil, os
+mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
+st.write(f"Current memory usage: {mem:.2f} MB")
 
 # ==============================
 # Load model & tokenizer
@@ -297,9 +300,8 @@ with tab1:
 
             if st.session_state.topic_done:
                 st.success("✅ Topic prediction complete! Go to **Tab '💡 Topic Analysis'** to view results.")
-                import psutil, os
-                mem = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
-                st.write(f"Current memory usage: {mem:.2f} MB")
+                mem2 = psutil.Process(os.getpid()).memory_info().rss / (1024 * 1024)
+                st.write(f"Current memory usage: {mem2:.2f} MB")
 
 # ==============================
 # Tab 2 - Sentiment Results
@@ -961,6 +963,7 @@ with tab3:
     else:
 
         st.warning("⚠️ Please run the topic prediction first.")
+
 
 
 
